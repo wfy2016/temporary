@@ -5,7 +5,7 @@
 	}
 	echo "Connected successfully.\n";
 
-	$db_selected = mysql_select_db('na_user', $link);
+	$db_selected = mysql_select_db('nail', $link);
 	if (!$db_selected) {
 	    die ('Can\'t use foo : ' . mysql_error());
 	}
