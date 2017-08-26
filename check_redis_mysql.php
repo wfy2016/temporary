@@ -20,7 +20,9 @@
 	    $message .= 'Whole query: ' . $query;
 	    die($message);
 	}
-	print $result;
+	$row = mysql_fetch_array($result);
+	#var_dump($row);
+        printf ("count is %s", $row[0]);
 	mysql_free_result($result);
 	mysql_close($link);
 ?>
