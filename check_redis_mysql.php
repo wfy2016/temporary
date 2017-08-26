@@ -3,6 +3,6 @@
 	if (!$link) {
 	    die('Could not connect: ' . mysql_error());
 	}
-	echo 'Connected successfully.' . '<br />';
+	echo 'Connected successfully.' . '\n';
 	mysql_close($link);
 ?>
