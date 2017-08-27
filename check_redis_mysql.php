@@ -22,7 +22,18 @@
 	}
 	$row = mysql_fetch_array($result);
 	#var_dump($row);
-        printf ("count is %s", $row[0]);
+    printf ("count is %s", $row[0]);
+    $mysql_user_count = $row[0];
+    //从redis中读取寻找好友列表
+   $redis = new Redis();
+   $redis->connect('127.0.0.1', 6379);
+   $arList = $redis->keys("friend_open_mes_*");
+   $redis_user_count = count($arList);
+   if($mysql_user_count > $redis_user_count){
+   		$get_from_mysql_to_redis = $mysql_user_count - $redis_user_count;
+   		//从mysql中取id最大的 $get_from_mysql_to_redis个数据 到redis
+
+   }
 	mysql_free_result($result);
 	mysql_close($link);
 ?>
