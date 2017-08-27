@@ -42,16 +42,21 @@
 		    $message .= 'Whole query: ' . $query;
 		    die($message);
 		}
-		$row = mysql_fetch_array($result);
+		$arr_res = array();
+		while ($row = mysql_fetch_assoc($result))
+		{
+			$arr_res[] = $row;
+		}
+		// $row = mysql_fetch_array($result);
 		//每个数组按照id添加redis,例如id=10,redis命名为friend_open_mes_10
 		$func = function($value) use($redis){
 			$redis_name='friend_open_mes_' . $value['id'];
 			var_dump($value);
 			echo '##################';
-			var_dump($redis_name);die
+			var_dump($redis_name);die;
 			$redis->hMset($redis_name,$value);
 		};
-		array_map($func, $row);
+		array_map($func, $arr_res);
 		// var_dump($row);
    }
 	mysql_free_result($result);
