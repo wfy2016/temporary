@@ -7,20 +7,20 @@ class Mylog
 	private $str='';
 	function __construct()	{}
 	function __destruct(){
-		$file=printf("php_log_%s.log",date('Y-m-d'));
+		$file=sprintf("php_log_%s.log",date('Y-m-d'));
 		file_put_contents($file,$this->str,FILE_APPEND);
 	}
 	function log($str,$log_level){
 		switch ($log_level) {
 			case self::LOG_LEVEL_NOTICE :
-				$this->str .= printf("[" . date('Y-m-d H:i:s') . "]" . "NOTICE" . $str . "<br>");
+				$this->str .= "[" . date('Y-m-d H:i:s') . "]" . "NOTICE" . $str . "\n";
 				break;
 			
 			default:
 				# code...
 				break;
 		}
-		return;
+		#return;
 	}
 	function notice($str){
 		$this->log($str,self::LOG_LEVEL_NOTICE);
@@ -30,4 +30,5 @@ class Mylog
 	for ($i=0; $i < 11; $i++) { 
 		$log->notice("test $i");# code...
 	}
+	unset($log);
 ?>
