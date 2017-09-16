@@ -4,12 +4,12 @@
 	*/
 	class ClassTeacher 
 	{
-		public name;
-		public course;
-		public rank;
+		public $name;
+		public $course;
+		public $rank;
 		public function self_introduce()
 		{
-			echo "Hi,i`m your techer " . $this->name . ",a" . $this->rank "teacher\n";# code...
+			echo "Hi,i`m your techer " . $this->name . ",a " . $this->rank . " teacher." . "\n";# code...
 			echo "I will teach your " . $this->course . " class.\n";
 		}
 		public function set_message($name,$course,$rank){
