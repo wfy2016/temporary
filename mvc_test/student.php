@@ -8,20 +8,20 @@
 		public $gender;
 		public $age;
 		static $student_num=0;
-		const $recording_time="2017-9-16 19:11";
+		const recording_time="2017-9-16 19:11";
 		function __construct($arg_name,$arg_gender,$arg_age)
 		{
 			$this->name=$arg_name;# code...
 			$this->gender=$arg_gender;
 			$this->age=$arg_age;
 			self::$student_num++;
-			echo $this->name . "join us,now there are " . self::$student_num . "students\n";
+			echo $this->name . "join us,now there are " . self::$student_num . " students\n";
 		}
 		function self_introduce(){
 			echo "My name is " . $this->name . " a " . $this->age . " years old" . $this->gender . "\n";
 		}
 		function __destruct(){
-			echo "We are from " . self::$recording_time . ".\n";
+			echo $this->name . " have been destroyed.\n";
 		}
 	}
 
