@@ -14,7 +14,7 @@
 		protected $price;
 		protected $stock;
 
-		function __construct($name,$price,$stock){
+		protected function __construct($name,$price,$stock){
 			$this->name=$name;
 			$this->price=$price;
 			$this->stock=$stock;
@@ -38,7 +38,7 @@
 			$this->brand=$brand;
 			$this->producing_place=$producing_place;
 		}
-		protected function self_introduce()
+		public function self_introduce()
 		{
 			parent::self_introduce();
 			// echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
@@ -48,11 +48,19 @@
 
 	class ClassGoodsBook extends ClassGoods
 	{
-		public $auther;
-		public $press;
-		public function self_introduce()
+		protected $auther;
+		protected $press;
+
+		protected function __construct($name,$price,$stock,$auther,$press){
+			parent::__construct;
+			$this->auther=$auther;
+			$this->press=$press;
+		}
+		 function self_introduce()
+		}
 		{
-			echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
+			parent::self_introduce();
+			// echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
 			echo $this->name . " `s auther is " . $this->auther . ",it`s press is " . $this->press . ".\n"; 
 		}
 	}
@@ -69,15 +77,14 @@
 
 
 
-/*
-	$book = new ClassGoodsBook();
+	$book = new ClassGoodsBook("computer system","19","10","linui","Sage Publications");
 
-	$book->name="computer system";
-	$book->price="19";
-	$book->stock="10";
-	$book->auther="linui";
-	$book->press="Sage Publications";
+	// $book->name="computer system";
+	// $book->price="19";
+	// $book->stock="10";
+	// $book->auther="linui";
+	// $book->press="Sage Publications";
 
 	$book->self_introduce();
-*/
+
 ?>
