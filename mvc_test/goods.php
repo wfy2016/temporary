@@ -51,13 +51,13 @@
 		protected $auther;
 		protected $press;
 
-		protected function __construct($name,$price,$stock,$auther,$press){
-			parent::__construct;
+		 function __construct($name,$price,$stock,$auther,$press){
+			parent::__construct($name,$price,$stock);
 			$this->auther=$auther;
 			$this->press=$press;
 		}
 		 function self_introduce()
-		}
+		
 		{
 			parent::self_introduce();
 			// echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
