@@ -10,14 +10,20 @@
 	*/
 	class ClassGoods
 	{
-		public $name;
-		public $price;
-		public $stock;
+		protected $name;
+		protected $price;
+		protected $stock;
 
-		public function self_introduce()
+		function __construct($name,$price,$stock){
+			$this->name=$name;
+			$this->price=$price;
+			$this->stock=$stock;
+		}
+		protected function self_introduce()
 		{
 			echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
 		}
+
 	}
 
 	/**
@@ -25,11 +31,17 @@
 	*/
 	class ClassGoodsPhone extends ClassGoods
 	{
-		public $brand;
-		public $producing_place;
-		public function self_introduce()
+		protected $brand;
+		protected $producing_place;
+		function __construct($name,$price,$stock,$brand,$producing_place){
+			parent::__construct($name,$price,$stock);
+			$this->brand=$brand;
+			$this->producing_place=$producing_place;
+		}
+		protected function self_introduce()
 		{
-			echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
+			parent::self_introduce();
+			// echo "The unit price of " . $this->name ." is " . $this->price . " .\n";# code...
 			echo $this->name . " `s brand is " . $this->brand . ",it`s producing_place is " . $this->producing_place . ".\n"; 
 		}
 	}
@@ -45,19 +57,19 @@
 		}
 	}
 
-	$phone = new ClassGoodsPhone();
+	$phone = new ClassGoodsPhone("Huawei P10","3299","99","Huawei","Shenzhen");
 
-	$phone->name="Huawei P10";
-	$phone->price="3299";
-	$phone->stock="99";
-	$phone->brand="Huawei";
-	$phone->producing_place="Shenzhen";
+	// $phone->name="Huawei P10";
+	// $phone->price="3299";
+	// $phone->stock="99";
+	// $phone->brand="Huawei";
+	// $phone->producing_place="Shenzhen";
 
 	$phone->self_introduce();
 
 
 
-
+/*
 	$book = new ClassGoodsBook();
 
 	$book->name="computer system";
@@ -67,5 +79,5 @@
 	$book->press="Sage Publications";
 
 	$book->self_introduce();
-
+*/
 ?>
