@@ -34,9 +34,9 @@ class ClassMySQLDB {
 
 
 		while ($row = mysql_fetch_assoc($result)) {
-			echo $row['name'];
-			echo $row['id'];
-
+			//echo $row['name'];
+			//echo $row['id'];
+			var_dump($row);
 		}
 
 		mysql_free_result($result);
