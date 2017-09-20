@@ -18,7 +18,22 @@ class ClassMySQLDB {
 		$this->dbname=$dbname?$dbname:"mysqldb";
 		$this->charset=$charset?$charset:"utf8";
 
-		self::$link=mysql_connect("{$this->host}:{$this->port}",$this->user,$this->pass);
+		$this->sql_connect();
+	}
+	function sql_dbname($dbname){
+		$this->dbname=$dbname;
+		mysql_query("use $dbname");
+	}
+	function sql_close(){
+		mysql_close(self::$link);
+	}
+	function sql_charset($charset){
+		$this->charset=$charset;
+		mysql_query("set names $charset");
+	}
+	private function sql_connect(){
+		self::$link=mysql_connect("{$this->host}:{$this->port}",$this->user,$this->pass)
+		 							or die('Could not connect: ' . mysql_error());
 		mysql_query("set names $this->charset");
 		mysql_query("use $this->dbname");
 	}
@@ -34,16 +49,16 @@ class ClassMySQLDB {
 
 
 		while ($row = mysql_fetch_assoc($result)) {
-			//echo $row['name'];
-			//echo $row['id'];
 			var_dump($row);
 		}
 
 		mysql_free_result($result);
 	}
+	private function __clone(){}
 	static function mysql_init($host,$port,$user,$pass,$dbname,$charset){
-		if(empty(self::$link)){
+		// if(empty(self::$link)){
 			//new一个对象
+		if(!(self::$link instanceof self){
 			self::$link=new self($host,$port,$user,$pass,$dbname,$charset);
 		}
 		return self::$link;
